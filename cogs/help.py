@@ -24,14 +24,14 @@ class Help(commands.Cog):
                 commands_description = ''
                 for j in self.bot.walk_commands():
                     if not j.cog_name and not j.hidden:
-                        commands_description += f"{j.name} - {j.help}\n"
+                        commands_description += f"**{j.name}** - {j.help}\n"
                 help_embed.add_field(
                     name="Uncatagorized Commands",
                     value=commands_description[0:len(commands_description)-1],
                     inline=False,
                 )
-                await ctx.message.add_reaction("✉")
-                await ctx.message.author.send('', embed=help_embed)
+                # await ctx.message.add_reaction("✉")
+                await ctx.send('', embed=help_embed)
             else:
                 if len(cog) > 1:
                     await ctx.send("Too many arguments")
@@ -55,8 +55,8 @@ class Help(commands.Cog):
                     if not isCommandFound:
                         ctx.send("That command does not exist")
                     else:
-                        await ctx.message.add_reaction("✉")
-                        await ctx.message.author.send('', embed=help_embed)
+                        # await ctx.message.add_reaction("✉")
+                        await ctx.send('', embed=help_embed)
         except:
             await ctx.send("I can't send embeds :')")
 
