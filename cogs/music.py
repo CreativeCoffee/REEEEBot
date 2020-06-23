@@ -1,6 +1,7 @@
-import discord
 from discord.ext import commands
 from discord.utils import get
+from os import system
+import discord
 import youtube_dl
 import os
 import time
@@ -109,10 +110,14 @@ class Music(commands.Cog):
                 'preferredquality': '192',
             }],
         }
+        try:
+            with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+                print("Downloading audio now\n")
+                ydl.download([url])
+        except:
+            print("UNSUPPORTED URL: Trying SpotDL")          
+            system("spotdl " " -s " + url)
 
-        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-            print("Downloading audio now\n")
-            ydl.download([url])
 
         for file in os.listdir("./"):
             if file.endswith(".mp3"):
@@ -204,11 +209,15 @@ class Music(commands.Cog):
                 'preferredquality': '192',
             }],
         }
-
-        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-            print("Downloading audio now\n")
-            ydl.download([url])
-        await ctx.send("Adding song " + str(q_num) + " to the queue")
+        try:
+            with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+                print("Downloading audio now\n")
+                ydl.download([url])
+            await ctx.send("Adding song " + str(q_num) + " to the queue")
+        except:
+            print("UNSUPPORTED URL: Trying SpotDL")
+            q_path = os.path.abspath(os.path.realpath("Queue") + f"\song{q_num}.mp3")
+            system("spotdl -f " + q_path + " -s " + url)
 
         print("Song added to queue\n")
 
