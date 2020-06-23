@@ -33,6 +33,9 @@ class Phrases(commands.Cog):
     @commands.command(help="Unholy Command")
     async def UwU(self, ctx):
         await ctx.send('https://cdn.discordapp.com/attachments/382960871468564480/724663428580376596/unknown.png')
+    @commands.command(help="Make the bot say something")
+    async def say(self, ctx, *, sentence):
+        await ctx.send(f"REEEE Bot says {sentence}")
     
 
 
