@@ -7,6 +7,8 @@ import os
 import time
 import shutil
 
+queues = {}
+
 class Music(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -34,10 +36,8 @@ class Music(commands.Cog):
            print("invalid command")
            await ctx.send(f"I need to be in a voice channel to do that")
     @commands.command(aliases=['p'], help="Plays music from given URL")
-    async def play(self, ctx, url: str):
-        queues = {}        
+    async def play(self, ctx, url: str):       
         def check_queue():
-            queues = {}
             Queue_infile = os.path.isdir("./Queue")
             if Queue_infile is True:
                 DIR = os.path.abspath(os.path.realpath("Queue"))
@@ -164,7 +164,6 @@ class Music(commands.Cog):
 
     @commands.command(aliases=['s'], help="Stops currently playing music")
     async def stop(self, ctx):
-        queues = {}
         voice = get(self.bot.voice_clients, guild=ctx.guild)
 
         queues.clear()
@@ -181,12 +180,8 @@ class Music(commands.Cog):
             print("No music playing failed to stop")
             await ctx.send("No music playing failed to stop")
 
-
-    queues = {}
-
     @commands.command(aliases=['q'], help="Queues up the next song")
     async def queue(self, ctx, url: str):
-        queues = {}
         Queue_infile = os.path.isdir("./Queue")
         if Queue_infile is False:
             os.mkdir("Queue")
