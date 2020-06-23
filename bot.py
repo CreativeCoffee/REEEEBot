@@ -11,7 +11,7 @@ async def on_ready():
     print('BEEP BOOP AM ONLINE')
 
 @bot.command()
-async def ping(self, ctx):
+async def ping(ctx):
     await ctx.send('Pong!')
 
 @bot.command()
