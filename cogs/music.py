@@ -11,7 +11,7 @@ class Music(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(aliases=['j'])
+    @commands.command(aliases=['j'], help="Bot joins user VC")
     async def join(self, ctx):
         global voice
         channel = ctx.message.author.voice.channel
@@ -33,7 +33,7 @@ class Music(commands.Cog):
         else:
            print("invalid command")
            await ctx.send(f"I need to be in a voice channel to do that")
-    @commands.command(aliases=['p'])
+    @commands.command(aliases=['p'], help="Plays music from given URL")
     async def play(self, ctx, url: str):
         queues = {}        
         def check_queue():
@@ -134,7 +134,7 @@ class Music(commands.Cog):
         print("playing\n")
 
 
-    @commands.command(pass_context=True, aliases=['pa', 'pau'])
+    @commands.command(help="Pauses Music")
     async def pause(self, ctx):
 
         voice = get(self.bot.voice_clients, guild=ctx.guild)
@@ -148,7 +148,7 @@ class Music(commands.Cog):
             await ctx.send("Music not playing failed pause")
 
 
-    @commands.command(pass_context=True, aliases=['r', 'res'])
+    @commands.command(help="Plays paused music")
     async def resume(self, ctx):
 
         voice = get(self.bot.voice_clients, guild=ctx.guild)
@@ -162,7 +162,7 @@ class Music(commands.Cog):
             await ctx.send("Music is not paused")
 
 
-    @commands.command(pass_context=True, aliases=['s', 'sto'])
+    @commands.command(aliases=['s'], help="Stops currently playing music")
     async def stop(self, ctx):
         queues = {}
         voice = get(self.bot.voice_clients, guild=ctx.guild)
@@ -184,7 +184,7 @@ class Music(commands.Cog):
 
     queues = {}
 
-    @commands.command(pass_context=True, aliases=['q'])
+    @commands.command(aliases=['q'], help="Queues up the next song")
     async def queue(self, ctx, url: str):
         queues = {}
         Queue_infile = os.path.isdir("./Queue")
@@ -225,7 +225,7 @@ class Music(commands.Cog):
             await ctx.send("Adding song " + str(q_num) + " to the queue")
 
         print("Song added to queue\n")
-    @commands.command()
+    @commands.command(help="Skips the currently playing song", aliases=['n'])
     async def next(self, ctx):
         voice = get(self.bot.voice_clients, guild=ctx.guild)
         if voice and voice.is_playing():

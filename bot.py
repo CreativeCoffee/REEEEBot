@@ -10,15 +10,15 @@ bot = commands.Bot(cmd)
 async def on_ready():
     print('BEEP BOOP AM ONLINE')
 
-@bot.command()
+@bot.command(help="Makes the bot say Pong!")
 async def ping(ctx):
     await ctx.send('Pong!')
 
-@bot.command()
+@bot.command(hidden=True)
 async def load(ctx, extension):
     bot.load_extension(f'cogs.{extension}')
 
-@bot.command()
+@bot.command(hidden=True)
 async def unload(ctx, extension):
     bot.unload_extension(f'cogs.{extension}')
 

@@ -6,17 +6,17 @@ import time
 class Games(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-    @commands.command()
+    @commands.command(help="Rolls a dice!")
     async def roll(self, ctx):
         await ctx.send(f'You rolled {random.randrange(1, 6)}')
-    @commands.command()
+    @commands.command(help="Flips a coin!")
     async def coinflip(self, ctx):
         sides = ['heads', 'tails']
         coin = random.choice(sides)
         await ctx.send(f'*flips coin*')
         time.sleep(1)
         await ctx.send(f'Its {coin}')
-    @commands.command(aliases=['8ball'])
+    @commands.command(name="8Ball", help="Ask a question to get a response!")
     async def _8ball(self, ctx, question):
         answers = [
             'It is certain.', 

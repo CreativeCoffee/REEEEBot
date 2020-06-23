@@ -8,7 +8,7 @@ class Moderation(commands.Cog):
     # Events
 
     # Commands
-    @commands.command()
+    @commands.command(help="Gives mentioned user a warning")
     @commands.has_role(582681219909550103)
     async def warn(self, ctx, member: discord.Member=None, *, reason=None):
             await ctx.send(f'{member.mention} you have been warned for {reason}')
@@ -16,7 +16,7 @@ class Moderation(commands.Cog):
             channel =  self.bot.get_channel(723989048452186123)
             embed = discord.Embed(title=f'{ctx.author.name} Warned {member.name}', description=reason)
             await channel.send(embed=embed)
-    @commands.command()
+    @commands.command(help="Kicks the mentioned user")
     @commands.has_role(582681219909550103)
     async def kick(self, ctx, member: discord.Member, *, reason=None):
         await ctx.send(f'{ctx.author.mention} kicked {member.name}')
@@ -26,7 +26,7 @@ class Moderation(commands.Cog):
         channel =  self.bot.get_channel(723989048452186123)
         embed = discord.Embed(title=f'{ctx.author.name} Kicked {member.name}', description=reason)
         await channel.send(embed=embed)
-    @commands.command()
+    @commands.command(help="Throws the ban hammer on mentioned user")
     @commands.has_role(582681219909550103)
     async def ban(self, ctx, member: discord.Member, *, reason=None):
         await ctx.send(f'{ctx.author.mention} banned {member.name}')
@@ -37,7 +37,7 @@ class Moderation(commands.Cog):
         embed = discord.Embed(title=f'{ctx.author.name} Banned {member.name}', description=reason)
         await channel.send(embed=embed)
 
-    @commands.command()
+    @commands.command(help="Revokes a ban")
     @commands.has_role(582681219909550103)
     async def unban(self, ctx, member, *, reason=None):
         await ctx.send(f'{ctx.author.mention} unbanned {member}')
@@ -48,7 +48,7 @@ class Moderation(commands.Cog):
         channel =  self.bot.get_channel(723989048452186123)
         embed = discord.Embed(title=f'{ctx.author.name} Unbanned {member.name}', description=reason)
         await channel.send(embed=embed)
-    @commands.command()
+    @commands.command(help="Purges <number> of messages")
     @commands.has_permissions(manage_messages=True)
     async def clean(self, ctx, numberOfMessages=5):
         await ctx.channel.purge(limit=numberOfMessages)
