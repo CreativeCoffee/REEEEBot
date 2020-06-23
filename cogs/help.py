@@ -6,7 +6,7 @@ class Help(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
     @commands.command(aliases=['h'], help="Shows the help message")
-    async def customhelp(self, ctx, *cog):
+    async def help(self, ctx, *cog):
         try:
             if not cog:
                 help_embed = discord.Embed(

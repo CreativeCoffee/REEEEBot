@@ -6,6 +6,7 @@ token = open('token.txt', 'r')
 cmd = '?'
 
 bot = commands.Bot(cmd)
+bot.remove_command("help")
 @bot.event
 async def on_ready():
     print('BEEP BOOP AM ONLINE')
