@@ -169,6 +169,10 @@ class Music(commands.Cog):
 
         queues.clear()
 
+        queue_infile = os.path.isdir("./Queue")
+        if queue_infile is True:
+            shutil.rmtree("./Queue")
+
         if voice and voice.is_playing():
             print("Music stopped")
             voice.stop()
@@ -218,9 +222,19 @@ class Music(commands.Cog):
             print("UNSUPPORTED URL: Trying SpotDL")
             q_path = os.path.abspath(os.path.realpath("Queue") + f"\song{q_num}.mp3")
             system("spotdl -f " + q_path + " -s " + url)
+            await ctx.send("Adding song " + str(q_num) + " to the queue")
 
         print("Song added to queue\n")
-
+    @commands.command()
+    async def next(self, ctx):
+        voice = get(self.bot.voice_clients, guild=ctx.guild)
+        if voice and voice.is_playing():
+            print("Skipping Song\n")
+            voice.stop()
+            await ctx.send("Skipping to next song :fast_forward:")
+        else:
+            print("No Music Playing")
+            await ctx.send("Can't skip!")
 
 
 def setup(bot):
