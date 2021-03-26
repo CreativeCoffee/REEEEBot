@@ -49,8 +49,8 @@ class Music(commands.Cog):
                     print("No more queued song(s)\n")
                     queues.clear()
                     return
-                main_location = os.path.dirname(os.path.realpath("./REEEEE_Bot"))
-                song_path = os.path.abspath(os.path.realpath("./Queue") + "\\" + first_file)
+                main_location = os.path.dirname(os.path.realpath("./REEEEEBot"))
+                song_path = os.path.abspath(os.path.realpath("./Queue") + "/" + first_file)
                 if length != 0:
                     print("Song done, playing next queued\n")
                     print(f"Songs still in queue: {still_q}")
@@ -196,7 +196,7 @@ class Music(commands.Cog):
                 add_queue = False
                 queues[q_num] = q_num
 
-        queue_path = os.path.abspath(os.path.realpath("Queue") + f"\song{q_num}.%(ext)s")
+        queue_path = os.path.abspath(os.path.realpath("Queue") + f"/song{q_num}.%(ext)s")
 
         ydl_opts = {
             'format': 'bestaudio/best',

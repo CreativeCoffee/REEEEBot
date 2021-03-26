@@ -53,7 +53,7 @@ class Help(commands.Cog):
                                         )
                                 isCommandFound = True
                     if not isCommandFound:
-                        ctx.send("That command does not exist")
+                         ctx.send("That command does not exist")
                     else:
                         # await ctx.message.add_reaction("✉")
                         await ctx.send('', embed=help_embed)
