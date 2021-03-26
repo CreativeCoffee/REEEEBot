@@ -187,3 +187,14 @@ song.mp3
 
 # End of https://www.toptal.com/developers/gitignore/api/python,windows,visualstudiocode
 >>>>>>> refs/remotes/origin/master
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/tasks.json
+!.vscode/launch.json
+*.code-workspace
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+.ionide
